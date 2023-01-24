@@ -11,9 +11,6 @@ public class Stack<T> {
 
     public void push(T value) {
         dataList.append(value);
-        // Warum muss ich ein Integer-Objekt uebergeben, wenn ich push() im Debugger aufrufe? Warum funktioniert es nicht, nur eine Integer zu uebergeben?
-        System.out.println("this: " + this); //exp.: Objekt der KLasse Stack mit Property `dataList` und Methode push, 20%
-        System.out.println(dataList);
     }
 
     public int size() {
@@ -27,18 +24,15 @@ public class Stack<T> {
         return dataList.delete(dataList.listLength() - 1);
     }
 
-    public ArrayList<T> pop(int n) {
+    public Object[] pop(int n) {
         if (this.size() == 0) {
             throw new NullPointerException("Stack is empty - nothing to delete.");
         }
-        // Create array to store deleted values in
-        // Wie erzeuge ich ein neues Array vom Datentyp T mit der Laenge n?
-        // T[] deletedValues = (T[]) new Object[n];
-        ArrayList<T> deletedValues = new ArrayList<T>();
+        Object[] deletedValues = new Object[n];
 
         for(int i = 0; i < n; i++) {
             T value = this.pop();
-            deletedValues.add(value);
+            deletedValues[i] = value;
         }
 
         return deletedValues;
@@ -50,5 +44,4 @@ public class Stack<T> {
         }
         return dataList.searchListReverse(this.size() - 1);
     }
-
 }
